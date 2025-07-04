@@ -1,88 +1,81 @@
-# 🚕 EDA – Optimising NYC Taxi Operations
+# 🗽 NYC Yellow Taxi Trip Data – Exploratory Data Analysis
 
-## 🎯 Objective
-This project aims to explore, visualize, and derive actionable insights from the New York City taxi trip dataset using **Exploratory Data Analysis (EDA)** techniques. The goal is to identify key patterns, anomalies, and operational opportunities that can help optimize taxi operations across time, location, and fare behavior.
+## 📌 Project Overview
 
----
+This project involves Exploratory Data Analysis (EDA) of the 2023 NYC Yellow Taxi trip dataset provided by the NYC Taxi and Limousine Commission (TLC). The objective is to uncover patterns and operational inefficiencies in taxi rides to optimize dispatching, routing, and pricing strategies.
 
-## 📦 ZIP Archive
-
-All final files are included in:  
-> **`EDA_Optimising_NYC_Taxis_Umair_Birajdar.zip`**
-
-| File Name                                      | Description |
-|-----------------------------------------------|-------------|
-| `EDA_NYC_Taxi_Analysis.ipynb`                 | Jupyter Notebook containing complete EDA, visualizations, and summary insights. |
-| `EDA_Report_NYC_Taxis.pdf`                    | PDF report formatted for business stakeholders. |
-| `README.md`                                   | This file – project overview, structure, and findings. |
-
-*Note: The original starter notebook and base files are from the ZIP `Starter-Notebook-EDA-NYC-Taxi.zip`.*
+> ✅ **Goal:** Provide data-driven insights to help a new taxi service in NYC enhance efficiency, reduce idle time, and increase revenue while remaining competitive.
 
 ---
 
-## ⚙️ How to Run This Project
+## 📂 Dataset
 
-1. Unzip the archive: `EDA_Optimising_NYC_Taxis_Umair_Birajdar.zip`
-2. Open the `.ipynb` file using:
-   - Jupyter Notebook (Anaconda)
-   - Google Colab
-   - VS Code with Jupyter extension
-3. Run cells in order to reproduce the EDA process and visual outputs.
-4. Dataset may either be embedded or loaded from CSV depending on notebook setup.
+- **Source:** [NYC Taxi & Limousine Commission](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
+- **Format:** Parquet files (one per month)
+- **Size:** 12 files for the year 2023 (~200 million+ records before sampling)
 
----
-
-## 🔍 Key Exploratory Areas
-
-- Trip duration and distance analysis
-- Passenger count distribution
-- Time-based patterns (hour, weekday, month)
-- Pickup and drop-off location trends
-- Fare amount and tip analysis
-- Correlations and outlier detection
-- Mapping hot zones using latitude-longitude coordinates
+**Fields include:**
+- Pickup/dropoff datetime and location
+- Trip distance and duration
+- Fare, tip, taxes, surcharges
+- Passenger count, payment type, rate code
 
 ---
 
-## 📊 Key Findings
+## 🔧 Key Tasks Performed
 
-- 🕐 **Trip Duration Trends**: Majority of trips are under 15 minutes, but a few extreme outliers exist.
-- 🌇 **Rush Hour Peaks**: Clear spikes in trip volume during weekday mornings and evenings.
-- 📍 **Location Hotspots**: Manhattan dominates as the most active pickup and drop-off region.
-- 💵 **Fare Behavior**: Fare does not increase linearly with trip distance – suggesting pricing inefficiencies or flat rates.
-- 🧍‍♂️ **Passenger Count**: Most trips involve 1–2 passengers; very few have more than 4.
-- 🧭 **Geospatial Gaps**: Outlier coordinates indicate incorrect or missing GPS data.
+### 🗃️ 1. Data Sampling & Loading
+- Sampled 5% of records per hour per day to ensure representative time-based trends.
+- Merged 12 monthly files into a single DataFrame (~1.89M rows).
 
----
+### 🧹 2. Data Cleaning
+- Handled missing values (e.g., `passenger_count`, `RatecodeID`).
+- Removed or fixed outliers (e.g., `trip_distance = 0` with high fare).
+- Combined duplicate columns (`airport_fee`, `Airport_fee`).
 
-## 💡 Recommendations
-
-1. **Clean GPS data** to remove faulty coordinates and enhance spatial accuracy.
-2. **Review pricing model** to ensure fairness across short and long trips.
-3. **Introduce pooling incentives** for high-density passenger locations.
-4. **Add surge pricing caps** during peak hours to maintain ridership affordability.
-5. **Target app optimizations** in boroughs with inconsistent pickup patterns.
+### 📊 3. Exploratory Data Analysis (EDA)
+- Time-based trends (hourly, daily, monthly analysis)
+- Zone-based pickup/dropoff hotspots
+- Fare vs distance vs tip relationships
+- Analysis of payment types, rate codes, and passenger counts
 
 ---
 
-## 🧰 Tools & Libraries
+## 💡 Key Insights
 
-- **Python 3.x**
-- pandas, numpy, matplotlib, seaborn, plotly
-- folium (for geospatial mapping)
-- Jupyter Notebook / Google Colab
-
----
-
-## 👤 Author Info
-
-**Name**: Umair Birajdar  
-**Submission Date**: June 2025  
-**Program**: Executive Diploma in Data Science & AI – IIIT Bangalore / upGrad  
-**Module**: EDA – NYC Taxi Optimization
+- **Peak Demand:** Morning (7–10 AM) and Evening (5–8 PM)
+- **High-Demand Zones:** Midtown Manhattan, Airports (JFK, LaGuardia), Financial District
+- **Most Trips:** Involve 1–2 passengers, paid by credit card
+- **Outliers:** Numerous zero-distance trips with abnormally high fares
 
 ---
 
-## 📄 Disclaimer
+## 🚕 Recommendations
 
-This is a student project submitted as part of the upGrad curriculum. All analysis is educational and based on publicly available or assigned datasets.
+### 🔁 Routing & Dispatch Optimization
+- Increase cab availability in peak hours and zones
+- Position idle taxis in demand-heavy micro-clusters
+- Use live heatmaps for dynamic rebalancing
+
+### 📍 Strategic Cab Positioning
+- Deploy taxis differently on weekdays vs weekends
+- Assign more cabs near airports during holidays
+- Maintain night coverage in hospitals, transport hubs
+
+### 💰 Pricing Strategy Adjustments
+- Introduce dynamic pricing based on demand and congestion
+- Offer digital payment rewards and subscription plans
+- Set minimum fares for short trips and cap long-trip fares
+
+---
+
+## 🧠 Tools & Technologies
+
+- **Language:** Python
+- **Libraries:** `pandas`, `numpy`, `matplotlib`, `seaborn`
+- **Environment:** Jupyter Notebook
+- **Data Format:** `.parquet`, `.csv`
+
+---
+
+
